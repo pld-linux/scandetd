@@ -5,13 +5,13 @@ Release:	1
 License:	GPL
 Vendor:		Michal Suszycki <mike@wizard.ae.krakow.pl>
 Group:		Networking/Daemons
-Packager:	ksiadz <ksiadz@chelm.no-ip.com>
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Source0:	http://wizard.ae.krakow.pl/~mike/download/%{name}-%{version}.tar.gz
+# Source0-md5:	187335bb6a3cf59cca38019f2559e1cb
 Source1:	%{name}.init
 Source2:	%{name}.conf
+URL:            http://wizard.ae.krakow.pl/~mike
 Requires:	/usr/sbin/sendmail
-URL:		http://wizard.ae.krakow.pl/~mike
+BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Scandetd is a daemon which tries to recognize TCP and UDP port scans
@@ -26,7 +26,6 @@ to send an e-mail with following informations:
   - TCP flags set in packets (if OS probe)
 
 %prep
-
 %setup -q
 
 %build
@@ -39,6 +38,7 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/{rc.d/init.d}}
 install scandetd $RPM_BUILD_ROOT%{_sbindir}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/scandetd
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -51,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add scandetd
         echo "Run \"/etc/rc.d/init.d/scandetd start\" to start scandetd daemons."
+
 %preun
 if [ "$1" = "0" ]; then
         if [ -f /var/lock/subsys/scandetd ]; then
