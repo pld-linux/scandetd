@@ -2,7 +2,7 @@ Summary:	Scandetd - daemon recognizing TCP and UDP port scans and OS fingerprint
 Summary(pl):	Scandetd - demon rozpoznaj±cy skanowanie portów TCP i UDP oraz sprawdzanie OS
 Name:		scandetd
 Version:	1.2.0
-Release:	2.1
+Release:	2.2
 License:	GPL
 Vendor:		Michal Suszycki <mike@wizard.ae.krakow.pl>
 Group:		Networking/Daemons
@@ -54,7 +54,7 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/rc.d/init.d,%{_sysconfdir}}
   
 install scandetd $RPM_BUILD_ROOT%{_sbindir}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -76,4 +76,4 @@ fi
 %doc README TODO
 %attr(755,root,root) %{_sbindir}/%{name}
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.conf
