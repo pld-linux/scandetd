@@ -1,0 +1,59 @@
+#!/bin/sh
+# Scandetd deamon
+#
+# chkconfig:	2345 50 50
+# description:	Scandetd, scan detector.
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config
+[ -f /etc/sysconfig/scandetd ] && . /etc/sysconfig/scandetd
+
+# Check that networking is up.
+if is_no "${NETWORKING}"; then
+	msg_Network_Down SCANDETD
+	exit 1
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/scandetd ]; then
+		msg_starting "Scandetd Deamon"
+		daemon /usr/sbin/scandetd
+RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/scandetd
+	else
+		msg_Already_Running SCANDETD
+		exit 1
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/scandetd ]; then
+	msg_stopping "Scandetd Deamon"
+	killproc scandetd
+	rm -f /var/run/scandetd.pid
+	rm -f /var/lock/subsys/scandetd
+     else
+	msg_not_running scandetd
+     fi
+	;;
+  restart|reload)
+	 msg_reloading scandetd
+  	$0 stop	
+	$0 start
+	;;
+  status)
+	status scandetd
+	;;
+  *)
+	msg_Usage "$0 {start|stop|restart|reload|status}"
+	exit 1
+esac
+
+exit $RETVAL
