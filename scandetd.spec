@@ -1,4 +1,4 @@
-Summary:	Scandetd, is a daemon which tries to recognize TCP and UDP port scans and OS fingerprinting probes.
+Summary:	Scandetd - daemon which tries to recognize TCP and UDP port scans and OS fingerprinting probes.
 Name:		scandetd
 Version:	1.2.0
 Release:	1
@@ -9,9 +9,9 @@ Source0:	http://wizard.ae.krakow.pl/~mike/download/%{name}-%{version}.tar.gz
 # Source0-md5:	187335bb6a3cf59cca38019f2559e1cb
 Source1:	%{name}.init
 Source2:	%{name}.conf
-URL:            http://wizard.ae.krakow.pl/~mike
+URL:		http://wizard.ae.krakow.pl/~mike
 Requires:	/usr/sbin/sendmail
-BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Scandetd is a daemon which tries to recognize TCP and UDP port scans
