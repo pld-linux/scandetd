@@ -1,4 +1,5 @@
-Summary:	Scandetd - daemon which tries to recognize TCP and UDP port scans and OS fingerprinting probes.
+Summary:	Scandetd - daemon recognizing TCP and UDP port scans and OS fingerprinting probes
+Summary(pl):	Scandetd - demon rozpoznaj±cy skanowanie portów TCP i UDP oraz sprawdzanie OS
 Name:		scandetd
 Version:	1.2.0
 Release:	1
@@ -9,7 +10,7 @@ Source0:	http://wizard.ae.krakow.pl/~mike/download/%{name}-%{version}.tar.gz
 # Source0-md5:	187335bb6a3cf59cca38019f2559e1cb
 Source1:	%{name}.init
 Source2:	%{name}.conf
-URL:		http://wizard.ae.krakow.pl/~mike
+URL:		http://wizard.ae.krakow.pl/~mike/
 Requires:	/usr/sbin/sendmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -18,12 +19,27 @@ Scandetd is a daemon which tries to recognize TCP and UDP port scans
 and OS fingerprinting probes. Program also could be used as a TCP/UDP
 connection logger. If it encounters port scan or OS probe it is able
 to send an e-mail with following informations:
-  - scanning host
-  - number of connections made
-  - port of the first connection and it's time
-  - port of the last one and it's time
-  - guessed type of scan (SYN, FIN, NULL) - if it was a TCP scan
-  - TCP flags set in packets (if OS probe)
+ - scanning host
+ - number of connections made
+ - port of the first connection and it's time
+ - port of the last one and it's time
+ - guessed type of scan (SYN, FIN, NULL) - if it was a TCP scan
+ - TCP flags set in packets (if OS probe).
+
+%description -l pl
+Scandetd to demon próbuj±cy rozpoznaæ skanowanie portów TCP i UDP oraz
+próby rozpoznania systemu operacyjnego. Program mo¿e byæ u¿ywany tak¿e
+do logowania po³±czeñ TCP/UDP. W przypadku zauwa¿enia skanowania
+portów lub prób rozpoznania systemu mo¿e wys³aæ e-mail z nastêpuj±cymi
+informacjami:
+ - skanuj±cy host
+ - liczba nawi±zanych po³±czeñ
+ - port i czas przy pierwszym po³±czeniu
+ - port i czas przy ostatnim po³±czeniu
+ - prawdopodobny typ skanowania (SYN, FIN, NULL) w przypadków skanów
+   TCP
+ - flagi TCP ustawione w pakietach (w przypadku prób rozpoznania
+   systemu operacyjnego).
 
 %prep
 %setup -q
@@ -58,6 +74,6 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README TODO
-%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_sbindir}/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/%{name}
