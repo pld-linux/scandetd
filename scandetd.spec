@@ -2,7 +2,7 @@ Summary:	Scandetd - daemon recognizing TCP and UDP port scans and OS fingerprint
 Summary(pl):	Scandetd - demon rozpoznaj±cy skanowanie portów TCP i UDP oraz sprawdzanie OS
 Name:		scandetd
 Version:	1.2.0
-Release:	2
+Release:	2.1
 License:	GPL
 Vendor:		Michal Suszycki <mike@wizard.ae.krakow.pl>
 Group:		Networking/Daemons
