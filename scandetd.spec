@@ -19,12 +19,12 @@ Scandetd is a daemon which tries to recognize TCP and UDP port scans
 and OS fingerprinting probes. Program also could be used as a TCP/UDP
 connection logger. If it encounters port scan or OS probe it is able
 to send an e-mail with following informations:
- - scanning host
- - number of connections made
- - port of the first connection and it's time
- - port of the last one and it's time
- - guessed type of scan (SYN, FIN, NULL) - if it was a TCP scan
- - TCP flags set in packets (if OS probe).
+- scanning host
+- number of connections made
+- port of the first connection and it's time
+- port of the last one and it's time
+- guessed type of scan (SYN, FIN, NULL) - if it was a TCP scan
+- TCP flags set in packets (if OS probe).
 
 %description -l pl
 Scandetd to demon próbuj±cy rozpoznaæ skanowanie portów TCP i UDP oraz
@@ -32,14 +32,14 @@ próby rozpoznania systemu operacyjnego. Program mo¿e byæ u¿ywany tak¿e
 do logowania po³±czeñ TCP/UDP. W przypadku zauwa¿enia skanowania
 portów lub prób rozpoznania systemu mo¿e wys³aæ e-mail z nastêpuj±cymi
 informacjami:
- - skanuj±cy host
- - liczba nawi±zanych po³±czeñ
- - port i czas przy pierwszym po³±czeniu
- - port i czas przy ostatnim po³±czeniu
- - prawdopodobny typ skanowania (SYN, FIN, NULL) w przypadków skanów
-   TCP
- - flagi TCP ustawione w pakietach (w przypadku prób rozpoznania
-   systemu operacyjnego).
+- skanuj±cy host
+- liczba nawi±zanych po³±czeñ
+- port i czas przy pierwszym po³±czeniu
+- port i czas przy ostatnim po³±czeniu
+- prawdopodobny typ skanowania (SYN, FIN, NULL) w przypadków skanów
+  TCP
+- flagi TCP ustawione w pakietach (w przypadku prób rozpoznania
+  systemu operacyjnego).
 
 %prep
 %setup -q
@@ -61,14 +61,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add scandetd
-        echo "Run \"/etc/rc.d/init.d/scandetd start\" to start scandetd daemons."
+	echo "Run \"/etc/rc.d/init.d/scandetd start\" to start scandetd daemons."
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/scandetd ]; then
-        /etc/rc.d/init.d/scandetd stop >&2
-        fi
-        /sbin/chkconfig --del scandetd
+	if [ -f /var/lock/subsys/scandetd ]; then
+		/etc/rc.d/init.d/scandetd stop >&2
+	fi
+	/sbin/chkconfig --del scandetd
 fi
 
 %files
