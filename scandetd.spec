@@ -34,19 +34,14 @@ CFLAGS="%{rpmcflags}" \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/{rc.d/init.d}}  
+install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/{rc.d/init.d,sysconfig}}
+  
 install scandetd $RPM_BUILD_ROOT%{_sbindir}
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/scandetd
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%files
-%defattr(644,root,root,755)
-%attr(754,root,root) /etc/rc.d/init.d/scandetd
-%attr(640,root,root) %{_sysconfdir}/scandetd.conf
-%attr(755,root,root) %{_sbindir}/scandetd
 
 %post
 /sbin/chkconfig --add scandetd
@@ -59,3 +54,10 @@ if [ "$1" = "0" ]; then
         fi
         /sbin/chkconfig --del scandetd
 fi
+
+%files
+%defattr(644,root,root,755)
+%doc README TODO
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
+%attr(755,root,root) %{_sbindir}/%{name}
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/%{name}
