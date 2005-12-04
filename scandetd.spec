@@ -76,4 +76,4 @@ fi
 %doc README TODO
 %attr(755,root,root) %{_sbindir}/%{name}
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
