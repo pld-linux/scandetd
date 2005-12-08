@@ -45,7 +45,7 @@ RETVAL=$?
 	;;
   restart|reload)
 	 msg_reloading scandetd
-  	$0 stop	
+  	$0 stop
 	$0 start
 	;;
   status)
