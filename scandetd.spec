@@ -4,14 +4,16 @@ Name:		scandetd
 Version:	1.2.0
 Release:	2.2
 License:	GPL
-Vendor:		Michal Suszycki <mike@wizard.ae.krakow.pl>
 Group:		Networking/Daemons
 Source0:	http://wizard.ae.krakow.pl/~mike/download/%{name}-%{version}.tar.gz
 # Source0-md5:	187335bb6a3cf59cca38019f2559e1cb
 Source1:	%{name}.init
 Source2:	%{name}.conf
 URL:		http://wizard.ae.krakow.pl/~mike/
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires(post,preun):	/sbin/chkconfig
 Requires:	/usr/sbin/sendmail
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,13 +63,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add scandetd
-	echo "Run \"/etc/rc.d/init.d/scandetd start\" to start scandetd daemons."
+echo "Run \"/sbin/service scandetd start\" to start scandetd daemons."
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/scandetd ]; then
-		/etc/rc.d/init.d/scandetd stop >&2
-	fi
+	%service scandetd stop
 	/sbin/chkconfig --del scandetd
 fi
 
