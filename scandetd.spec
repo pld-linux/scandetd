@@ -1,5 +1,5 @@
 Summary:	Scandetd - daemon recognizing TCP and UDP port scans and OS fingerprinting probes
-Summary(pl):	Scandetd - demon rozpoznaj±cy skanowanie portów TCP i UDP oraz sprawdzanie OS
+Summary(pl.UTF-8):   Scandetd - demon rozpoznajÄ…cy skanowanie portÃ³w TCP i UDP oraz sprawdzanie OS
 Name:		scandetd
 Version:	1.2.0
 Release:	2.2
@@ -28,19 +28,19 @@ to send an e-mail with following informations:
 - guessed type of scan (SYN, FIN, NULL) - if it was a TCP scan
 - TCP flags set in packets (if OS probe).
 
-%description -l pl
-Scandetd to demon próbuj±cy rozpoznaæ skanowanie portów TCP i UDP oraz
-próby rozpoznania systemu operacyjnego. Program mo¿e byæ u¿ywany tak¿e
-do logowania po³±czeñ TCP/UDP. W przypadku zauwa¿enia skanowania
-portów lub prób rozpoznania systemu mo¿e wys³aæ e-mail z nastêpuj±cymi
+%description -l pl.UTF-8
+Scandetd to demon prÃ³bujÄ…cy rozpoznaÄ‡ skanowanie portÃ³w TCP i UDP oraz
+prÃ³by rozpoznania systemu operacyjnego. Program moÅ¼e byÄ‡ uÅ¼ywany takÅ¼e
+do logowania poÅ‚Ä…czeÅ„ TCP/UDP. W przypadku zauwaÅ¼enia skanowania
+portÃ³w lub prÃ³b rozpoznania systemu moÅ¼e wysÅ‚aÄ‡ e-mail z nastÄ™pujÄ…cymi
 informacjami:
-- skanuj±cy host
-- liczba nawi±zanych po³±czeñ
-- port i czas przy pierwszym po³±czeniu
-- port i czas przy ostatnim po³±czeniu
-- prawdopodobny typ skanowania (SYN, FIN, NULL) w przypadków skanów
+- skanujÄ…cy host
+- liczba nawiÄ…zanych poÅ‚Ä…czeÅ„
+- port i czas przy pierwszym poÅ‚Ä…czeniu
+- port i czas przy ostatnim poÅ‚Ä…czeniu
+- prawdopodobny typ skanowania (SYN, FIN, NULL) w przypadkÃ³w skanÃ³w
   TCP
-- flagi TCP ustawione w pakietach (w przypadku prób rozpoznania
+- flagi TCP ustawione w pakietach (w przypadku prÃ³b rozpoznania
   systemu operacyjnego).
 
 %prep
